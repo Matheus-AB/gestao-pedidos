@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>backend</name>
+    </assembly>
+    <members>
+        <member name="M:PedidosController.GetPedidos">
+            <summary>
+            Lista todos os pedidos.
+            </summary>
+            <returns>Lista de pedidos</returns>
+        </member>
+        <member name="M:PedidosController.GetPedido(System.Int32)">
+            <summary>
+            Obtém um pedido pelo ID.
+            </summary>
+            <param name="id">ID do pedido</param>
+            <returns>Pedido encontrado ou 404</returns>
+        </member>
+        <member name="M:PedidosController.CreatePedido(Pedido)">
+            <summary>
+            Cria um novo pedido com itens.
+            </summary>
+            <param name="pedido">Dados do pedido a ser criado, incluindo itens.</param>
+            <returns>Pedido criado</returns>
+        </member>
+        <member name="M:PedidosController.AdicionarItem(System.Int32,ItemPedido)">
+            <summary>
+            Adiciona um item ao pedido.
+            </summary>
+            <param name="pedidoId">ID do pedido</param>
+            <param name="item">Dados do item a ser adicionado</param>
+            <returns>Pedido atualizado</returns>
+        </member>
+        <member name="M:PedidosController.UpdatePedido(System.Int32,Pedido)">
+            <summary>
+            Atualiza o solicitante do pedido e a quantidade dos itens enviados, desde que o pedido esteja em rascunho.
+            </summary>
+            <param name="id">ID do pedido a ser atualizado.</param>
+            <param name="pedido">Dados atualizados do pedido, incluindo apenas o solicitante e as quantidades dos itens.</param>
+            <returns>Sem conteúdo (204) se atualizado com sucesso, erro se inválido.</returns>
+        </member>
+        <member name="M:PedidosController.CancelarPedido(System.Int32)">
+            <summary>
+            Cancela um pedido.
+            </summary>
+            <param name="id">ID do pedido a ser cancelado</param>
+            <returns>Sem conteúdo (204) se cancelado com sucesso, erro se inválido.</returns>
+        </member>
+        <member name="M:PedidosController.RemoverItem(System.Int32,System.Int32)">
+            <summary>
+            Remove um item de um pedido.
+            </summary>
+            <param name="pedidoId">ID do pedido</param>
+            <param name="itemId">ID do item a ser removido</param>
+            <returns>Pedido atualizado ou erro se inválido.</returns>
+        </member>
+        <member name="M:PedidosController.ConcluirPedido(System.Int32)">
+            <summary>
+            Conclui um pedido, atualizando o estoque dos produtos e alterando a situação para "Finalizado".
+            </summary>
+            <param name="id">ID do pedido a ser concluído</param>
+            <returns>Sem conteúdo (204) se concluído com sucesso, erro se inválido.</returns>
+        </member>
+        <member name="T:Pedido">
+            <summary>
+            Representa um pedido.
+            </summary>
+        </member>
+    </members>
+</doc>
