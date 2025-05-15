@@ -41,6 +41,47 @@ public class PedidosController : ControllerBase
     }
 
     /// <summary>
+    /// Obtém um pedido pelo ID, incluindo o nome dos produtos nos itens.
+    /// </summary>
+    /// <param name="id">ID do pedido</param>
+    /// <returns>Pedido encontrado com nomes dos produtos ou 404</returns>
+    [ProducesResponseType(typeof(Pedido), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [HttpGet("{id}/detalhado")]
+    public async Task<ActionResult> GetPedidoDetalhado(int id)
+    {
+        _logger.LogInformation("Buscando pedido detalhado com ID {Id}", id);
+
+        var pedido = await _context.Pedidos
+            .Include(p => p.Itens)
+            .ThenInclude(i => i.Produto)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        if (pedido == null)
+            return NotFound();
+
+        var resultado = new
+        {
+            pedido.Id,
+            pedido.Solicitante,
+            pedido.DataPedido,
+            pedido.ValorTotal,
+            pedido.Situacao,
+            Itens = pedido.Itens.Select(i => new
+            {
+                i.Id,
+                i.ProdutoId,
+                ProdutoNome = i.Produto.Nome,
+                i.Quantidade,
+                i.Preco,
+                i.Total
+            })
+        };
+
+        return Ok(resultado);
+    }    
+
+    /// <summary>
     /// Cria um novo pedido com itens.
     /// </summary>
     /// <param name="pedido">Dados do pedido a ser criado, incluindo itens.</param>

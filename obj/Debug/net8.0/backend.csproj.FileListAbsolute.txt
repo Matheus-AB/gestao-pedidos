@@ -172,3 +172,4 @@ C:\Users\Pichau\Desktop\datapar\backend\obj\Debug\net8.0\backend.xml
 C:\Users\Pichau\Desktop\datapar\backend\obj\Debug\net8.0\backend.pdb
 C:\Users\Pichau\Desktop\datapar\backend\obj\Debug\net8.0\backend.genruntimeconfig.cache
 C:\Users\Pichau\Desktop\datapar\backend\obj\Debug\net8.0\ref\backend.dll
+C:\Users\Pichau\Desktop\datapar\backend\obj\Debug\net8.0\backend.sourcelink.json

@@ -17,6 +17,13 @@
             <param name="id">ID do pedido</param>
             <returns>Pedido encontrado ou 404</returns>
         </member>
+        <member name="M:PedidosController.GetPedidoDetalhado(System.Int32)">
+            <summary>
+            Obtém um pedido pelo ID, incluindo o nome dos produtos nos itens.
+            </summary>
+            <param name="id">ID do pedido</param>
+            <returns>Pedido encontrado com nomes dos produtos ou 404</returns>
+        </member>
         <member name="M:PedidosController.CreatePedido(Pedido)">
             <summary>
             Cria um novo pedido com itens.

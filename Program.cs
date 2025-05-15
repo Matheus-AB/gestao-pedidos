@@ -5,6 +5,17 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuração do CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Substitua pelo endereço do seu frontend
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -26,12 +37,11 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
-app.UseSwagger();
-app.UseSwaggerUI();
-app.UseHttpsRedirection();
-app.MapControllers();
-app.Run();
+
+// Use o middleware de CORS
+app.UseCors("AllowSpecificOrigin");
 
 if (app.Environment.IsDevelopment())
 {
@@ -40,3 +50,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "API de Gestão de Pedidos V1");
     });
 }
+
+app.UseHttpsRedirection();
+app.MapControllers();
+app.Run();
